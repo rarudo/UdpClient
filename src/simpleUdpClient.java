@@ -17,19 +17,16 @@ import java.util.Random;
 
 class simpleUdpClient{
     public static void main(String args[]) throws InterruptedException {
-        for(int i = 0; i < 1000; i++) {
-            i = 0;
-            threadTes tt = new threadTes();
-            tt.start();
+        for(int i = 0; i < 1000; i++){
+            sendPacket();
             Thread.sleep((long) 1000f);
         }
     }
-}
 
-class threadTes extends Thread{
-    public void run() {
+    public static void sendPacket(){
         int port = 8800;
         //4byte16進数で色を表す
+        //[1,2,......,8,9,a,b,c,d,e,f]が利用可能
         String colorStr = "1";
         String msg = "メッセージ";
         String sendMsg= colorStr + msg;
@@ -41,10 +38,11 @@ class threadTes extends Thread{
             DatagramPacket sendPacket = new DatagramPacket(request,
                     request.length, serverAddress, port);
             socket.setSoTimeout(3000); // タイムアウトの設定 (3 秒)
-            socket.send(sendPacket); // REQUEST の送信
+            socket.send(sendPacket); // パケットの送信
         } catch (Exception e) {
-            System.out.println("Exception in init ");
             e.printStackTrace();
         }
     }
 }
+
+
