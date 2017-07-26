@@ -19,7 +19,7 @@ class simpleUdpClient{
     public static void main(String args[]) throws InterruptedException {
         for(int i = 0; i < 1000; i++) {
             i = 0;
-            threadTes tt = new threadTes(i);
+            threadTes tt = new threadTes();
             tt.start();
             Thread.sleep((long) 1000f);
         }
@@ -27,44 +27,13 @@ class simpleUdpClient{
 }
 
 class threadTes extends Thread{
-    private int num;
-
-    threadTes(int i){
-        this.num = i;
-    }
-
     public void run() {
-        byte[] buf = new byte[160 * 120 * 3];
-        String[] colorStr = {
-                "0",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f"
-        };
-        String[] msg= {
-                "色が変わるかな",
-                "色",
-                "変われ",
-                "Hello World"
-        };
-        Random rnd = new Random();
-        int randomInt1 = rnd.nextInt(colorStr.length-1);
-        int randomInt2 = rnd.nextInt(msg.length-1);
-        String sendMsg= colorStr[randomInt1] + msg[randomInt2];
-        byte request[] = sendMsg.getBytes();
         int port = 8800;
+        //4byte16進数で色を表す
+        String colorStr = "1";
+        String msg = "メッセージ";
+        String sendMsg= colorStr + msg;
+        byte request[] = sendMsg.getBytes();
         try {
             DatagramSocket socket = new DatagramSocket(); // ソケットの作成
             // 送信データ用 DatagramPacket の作成
