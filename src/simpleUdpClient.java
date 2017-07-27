@@ -30,7 +30,7 @@ class simpleUdpClient{
         int r=(int)(Math.random()*256);
         int g=(int)(Math.random()*256);
         int b=(int)(Math.random()*256);
-        String colorStr = Integer.toHexString(r)+Integer.toHexString(g)+Integer.toHexString(b);
+        String colorStr =  String.format("%02x", r)+String.format("%02x", g)+String.format("%02x", b);
         String msg = "メッセージ";
         String sendMsg= colorStr + msg;
         byte request[] = sendMsg.getBytes();
