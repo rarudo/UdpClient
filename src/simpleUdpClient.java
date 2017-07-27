@@ -1,4 +1,4 @@
-import com.sun.tools.javadoc.Start;
+﻿import com.sun.tools.javadoc.Start;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +27,10 @@ class simpleUdpClient{
         int port = 8800;
         //4byte16進数で色を表す
         //[1,2,......,8,9,a,b,c,d,e,f]が利用可能
-        String colorStr = "1";
+        int r=(int)(Math.random()*256);
+        int g=(int)(Math.random()*256);
+        int b=(int)(Math.random()*256);
+        String colorStr = Integer.toHexString(r)+Integer.toHexString(g)+Integer.toHexString(b);
         String msg = "メッセージ";
         String sendMsg= colorStr + msg;
         byte request[] = sendMsg.getBytes();
