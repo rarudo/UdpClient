@@ -1,5 +1,3 @@
-﻿import com.sun.tools.javadoc.Start;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,24 +15,23 @@ import java.util.Random;
 
 class simpleUdpClient{
     public static void main(String args[]) throws InterruptedException {
-        for(int i = 0; i < 1000; i++){
+        for(int i = 0; i < 1000000; i++){
             sendPacket();
-            Thread.sleep((long) 1000f);
+            Thread.sleep((long) 500f);
         }
     }
 
     public static void sendPacket(){
-        int port = 8800;
         //4byte16進数で色を表す
-        //[1,2,......,8,9,a,b,c,d,e,f]が利用可能
         int r=(int)(Math.random()*256);
         int g=(int)(Math.random()*256);
         int b=(int)(Math.random()*256);
         String colorStr =  String.format("%02x", r)+String.format("%02x", g)+String.format("%02x", b);
-        String msg = "メッセージ";
+        String msg = "メッセージ→乱数" + String.valueOf(Math.random());
         String sendMsg= colorStr + msg;
         byte request[] = sendMsg.getBytes();
         try {
+            int port = 8800;
             DatagramSocket socket = new DatagramSocket(); // ソケットの作成
             // 送信データ用 DatagramPacket の作成
             InetAddress serverAddress = InetAddress.getByName("127.0.0.1");
