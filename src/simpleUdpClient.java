@@ -15,20 +15,13 @@ import java.util.Random;
 
 class simpleUdpClient{
     public static void main(String args[]) throws InterruptedException {
-        for(int i = 0; i < 1000000; i++){
-            sendPacket();
-            Thread.sleep((long) 500f);
-        }
+        sendPacket("メッセージ!!!",255,12,44);
     }
 
-    public static void sendPacket(){
+    public static void sendPacket(String message,int r,int g,int b){
         //4byte16進数で色を表す
-        int r=(int)(Math.random()*256);
-        int g=(int)(Math.random()*256);
-        int b=(int)(Math.random()*256);
         String colorStr =  String.format("%02x", r)+String.format("%02x", g)+String.format("%02x", b);
-        String msg = "メッセージ→乱数" + String.valueOf(Math.random());
-        String sendMsg= colorStr + msg;
+        String sendMsg= colorStr + message;
         byte request[] = sendMsg.getBytes();
         try {
             int port = 8800;
