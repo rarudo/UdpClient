@@ -1,17 +1,9 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.DatagramChannel;
-import java.util.Random;
-
 class simpleUdpClient{
     public static void main(String args[]) throws InterruptedException {
-        sendPacket("メッセージ!!!","FF00000");
+        sendPacket("メッセージ!!!","FF0000");
     }
 
     //sendPacket("送信するメッセージ","色(16進数表記)")
@@ -31,7 +23,7 @@ class simpleUdpClient{
                     request.length, serverAddress, port);
             socket.setSoTimeout(3000); // タイムアウトの設定 (3 秒)
             socket.send(sendPacket); // パケットの送信
-            System.out.println("パケットの送信"+);
+            System.out.println("パケットの送信"+message);
         } catch (Exception e) {
             System.out.println("例外エラーが発生しましたlol");
             e.printStackTrace();
